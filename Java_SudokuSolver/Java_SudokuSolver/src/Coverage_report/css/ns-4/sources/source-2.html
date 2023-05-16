@@ -1,0 +1,257 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameClassTests</title>
+  <style type="text/Coverage_report.css">
+    @import "../../Coverage_report.css/coverage.Coverage_report.css";
+    @import "../../Coverage_report.css/idea.min.Coverage_report.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: GameClassTests (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameClassTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,1%
+  </span>
+  <span class="absValue">
+    (54/58)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package test;
+&nbsp;
+&nbsp;import nl.elridge.sudoku.model.Game;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+<b class="fc">&nbsp;public class GameClassTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestNewGame() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        assertEquals(game.isHelp(), true);</b>
+<b class="fc">&nbsp;        boolean[][] check = new boolean[9][9];</b>
+<b class="fc">&nbsp;        assertEquals(9, check.length);</b>
+<b class="fc">&nbsp;        assertEquals(9, check[0].length);</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; check.length; i++) {</b>
+<b class="fc">&nbsp;            for (int j = 0; j &lt; check[i].length; j++) {</b>
+<b class="fc">&nbsp;                assertFalse(check[i][j]);</b>
+&nbsp;                //  check[i][j] = false;
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetHelp() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.setHelp(false);</b>
+<b class="fc">&nbsp;        assertEquals(game.isHelp(), false);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetHelp() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.setHelp(true);</b>
+<b class="fc">&nbsp;        assertEquals(game.isHelp(), true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetSelectedNumber() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.setSelectedNumber(5);</b>
+<b class="fc">&nbsp;        assertEquals(game.getSelectedNumber(), 5);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCheckGame() {
+<b class="fc">&nbsp;        int[][] game = new int[9][9];</b>
+<b class="fc">&nbsp;        int[][] solution = new int[9][9];</b>
+<b class="fc">&nbsp;        boolean[][] check = new boolean[9][9];</b>
+&nbsp;
+<b class="fc">&nbsp;        for (int i = 0; i &lt; 9; i++) {</b>
+<b class="fc">&nbsp;            for (int j = 0; j &lt; 9; j++) {</b>
+<b class="fc">&nbsp;                game[i][j] = 0 * 9 + j * 1;</b>
+<b class="fc">&nbsp;                solution[i][j] = 0 * 9 + j * 1;</b>
+&nbsp;
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        Game g = new Game();</b>
+<b class="fc">&nbsp;        g.checkGame();</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; 9; i++) {</b>
+<b class="fc">&nbsp;            for (int j = 0; j &lt; 9; j++) {</b>
+<b class="fc">&nbsp;                check[i][j] = game[i][j] == solution[i][j];</b>
+<b class="fc">&nbsp;                assertEquals(check[i][j], true);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+<b class="fc">&nbsp;    public void TestSetAndGetNumber() {</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.setNumber(5, 5, 7);</b>
+&nbsp;        assertEquals(game.getNumber(5, 5), 7);
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIsCheckValid() {
+<b class="fc">&nbsp;        // False</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;        int[][] fields = {
+&nbsp;                {8, 2, 7, 1, 5, 4, 3, 9, 6},
+&nbsp;                {9, 6, 5, 3, 2, 7, 1, 4, 8},
+&nbsp;                {3, 4, 1, 6, 8, 9, 7, 5, 2},
+&nbsp;                {5, 9, 3, 4, 6, 8, 2, 7, 1},
+&nbsp;                {4, 7, 2, 5, 1, 3, 6, 8, 9},
+&nbsp;                {6, 1, 8, 9, 7, 2, 4, 3, 5},
+&nbsp;                {7, 8, 6, 2, 3, 5, 9, 1, 4},
+&nbsp;                {1, 5, 4, 7, 9, 6, 8, 2, 3},
+&nbsp;                {2, 3, 9, 8, 4, 1, 5, 6, 7}
+&nbsp;        };
+<b class="fc">&nbsp;</b>
+<b class="fc">&nbsp;        int x = 0;</b>
+<b class="fc">&nbsp;        int y = 0;</b>
+&nbsp;        assertFalse(game.isCheckValid(x, y));
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+<b class="fc">&nbsp;    public void TestIsCheckValid2() {</b>
+<b class="fc">&nbsp;        // True</b>
+&nbsp;        Game game = new Game();
+&nbsp;        int[][] fields = {
+&nbsp;                {8, 2, 7, 1, 5, 4, 3, 9, 6},
+&nbsp;                {8, 6, 5, 3, 2, 7, 1, 4, 8},
+&nbsp;                {3, 4, 1, 6, 8, 9, 7, 5, 2},
+&nbsp;                {5, 9, 3, 4, 6, 8, 2, 7, 1},
+&nbsp;                {4, 7, 2, 5, 1, 3, 6, 8, 9},
+&nbsp;                {6, 1, 8, 9, 7, 2, 4, 3, 5},
+&nbsp;                {7, 8, 6, 2, 3, 5, 9, 1, 4},
+&nbsp;                {1, 5, 4, 7, 9, 6, 8, 2, 3},
+<b class="fc">&nbsp;                {2, 3, 9, 8, 4, 1, 5, 6, 7}</b>
+<b class="fc">&nbsp;        };</b>
+<b class="fc">&nbsp;        int x = 0;</b>
+&nbsp;        int y = 0;
+&nbsp;        assertTrue(game.isCheckValid(x, y));
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    @Test</b>
+<b class="fc">&nbsp;    public void isSelectedNumberACandidateTrue() {</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.setSelectedNumber(5);</b>
+<b class="fc">&nbsp;        for (int y = 0; y &lt; 9; y++) {</b>
+<b class="nc">&nbsp;            for (int x = 0; x &lt; 9; x++) {</b>
+<b class="nc">&nbsp;                if (game.isSelectedNumberCandidate(x, y) &amp;&amp; game.isCheckValid(x, y)) {</b>
+&nbsp;                    game.setNumber(x, y, game.getSelectedNumber());
+&nbsp;                    assertTrue(game.isCheckValid(x, y));
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    @Test</b>
+<b class="fc">&nbsp;    public void isSelectedNumberACandidateFalse() {</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.setSelectedNumber(15);</b>
+<b class="fc">&nbsp;        for (int y = 0; y &lt; 9; y++) {</b>
+<b class="nc">&nbsp;            for (int x = 0; x &lt; 9; x++) {</b>
+<b class="nc">&nbsp;                if (game.isSelectedNumberCandidate(x, y) &amp;&amp; game.isCheckValid(x, y)) {</b>
+&nbsp;                    game.setNumber(x, y, game.getSelectedNumber());
+&nbsp;                    assertFalse(game.isCheckValid(x, y));
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-16 11:23</div>
+</div>
+</body>
+</html>
